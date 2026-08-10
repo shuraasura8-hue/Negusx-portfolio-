@@ -1,6 +1,6 @@
 // Vercel serverless function – no external dependencies needed if using built‑in fetch/SendGrid, 
 // but here we use Nodemailer for SMTP. Add nodemailer to your package.json.
-const nodemailer = require('nodemailer');
+import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -18,8 +18,8 @@ export default async function handler(req, res) {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.EMAIL_USER,   // shuraasura8@gmail.com
-      pass: process.env.EMAIL_PASS,   // App password (never commit real password)
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
@@ -28,7 +28,6 @@ export default async function handler(req, res) {
     to: 'shuraasura8@gmail.com',
     subject: `New message from ${name} via negusX portfolio`,
     text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`,
-    // For HTML emails you could use a simple template:
     html: `<p><strong>${name}</strong> (${email})</p><p>Phone: ${phone}</p><p>${message}</p>`,
   };
 
@@ -40,3 +39,4 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Failed to send email' });
   }
 }
+
