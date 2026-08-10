@@ -1,56 +1,94 @@
 // ========================
-// SPA ROUTING & UTILITIES
+// MOBILE NAV TOGGLE
 // ========================
-const pages = {
-  home: document.getElementById('home'),
-  about: document.getElementById('about'),
-  services: document.getElementById('services'),
-  contact: document.getElementById('contact'),
-  admin: document.getElementById('admin'),
-};
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
 
-let currentPage = 'home';
-
-function navigateTo(pageId) {
-  if (!pages[pageId]) return;
-  // Hide all
-  Object.values(pages).forEach(p => p.classList.remove('active'));
-  // Show target
-  pages[pageId].classList.add('active');
-  currentPage = pageId;
-  window.scrollTo(0, 0);
-  
-  // Update nav active class
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.classList.toggle('active', link.getAttribute('href') === `#${pageId}`);
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
   });
-  
-  // Refresh GSAP ScrollTrigger after layout
-  setTimeout(() => {
-    ScrollTrigger.refresh();
-  }, 200);
+
+  // Close mobile nav when clicking a link
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
 }
 
-// Hash listener
-window.addEventListener('hashchange', () => {
-  const hash = window.location.hash.slice(1) || 'home';
-  navigateTo(hash);
-  if (hash === 'admin') adminCheck();
-});
-
-// Initial load
-window.addEventListener('load', () => {
-  const hash = window.location.hash.slice(1) || 'home';
-  navigateTo(hash);
-  if (hash === 'admin') adminCheck();
+// ========================
+// SMOOTH SCROLL FOR ANCHOR LINKS
+// ========================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      const offset = 80; // navbar height
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
 });
 
 // ========================
-// TYPEWRITER EFFECT (Home)
+// ACTIVE NAV LINK ON SCROLL
+// ========================
+const sections = document.querySelectorAll('section[id]');
+const navItems = document.querySelectorAll('.nav-links a');
+
+function highlightNav() {
+  const scrollPos = window.scrollY + 150;
+  sections.forEach(section => {
+    const top = section.offsetTop;
+    const height = section.offsetHeight;
+    const id = section.getAttribute('id');
+    if (scrollPos >= top && scrollPos < top + height) {
+      navItems.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+      });
+    }
+  });
+}
+
+window.addEventListener('scroll', highlightNav, { passive: true });
+
+// ========================
+// BACK TO TOP BUTTON
+// ========================
+const backToTop = document.querySelector('.back-to-top');
+if (backToTop) {
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('visible', window.scrollY > 500);
+  }, { passive: true });
+}
+
+// ========================
+// SCROLL-TRIGGERED REVEAL ANIMATIONS
+// ========================
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+      revealObserver.unobserve(entry.target); // only animate once
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal, .project-card, .pricing-card, .service-item, .process-step, .testimonial, .about-stats').forEach(el => {
+  el.classList.add('reveal');
+  revealObserver.observe(el);
+});
+
+// ========================
+// TYPEWRITER EFFECT
 // ========================
 const typewriterEl = document.getElementById('typewriter');
 if (typewriterEl) {
-  const words = ['Crafting Digital Royalty', 'Premium Web Experiences', 'Where Luxury Meets Code'];
+  const words = ['Web Designer', 'Frontend Developer', 'Brand Builder'];
   let wordIndex = 0;
   let charIndex = 0;
   let currentWord = '';
@@ -64,7 +102,7 @@ if (typewriterEl) {
       typewriterEl.textContent = currentWord;
       if (charIndex === fullWord.length) {
         isDeleting = true;
-        setTimeout(type, 1500);
+        setTimeout(type, 2000);
         return;
       }
     } else {
@@ -76,74 +114,28 @@ if (typewriterEl) {
         wordIndex = (wordIndex + 1) % words.length;
       }
     }
-    setTimeout(type, isDeleting ? 50 : 100);
+    setTimeout(type, isDeleting ? 40 : 120);
   }
   type();
 }
 
 // ========================
-// GSAP ANIMATIONS
+// GSAP PARALLAX (Home only)
 // ========================
-gsap.registerPlugin(ScrollTrigger);
-
-// Home parallax
-gsap.to('.hero-bg', {
-  y: 100,
-  ease: 'none',
-  scrollTrigger: {
-    trigger: '.hero',
-    start: 'top top',
-    end: 'bottom top',
-    scrub: true,
-  },
-});
-
-// About text reveal (split into words)
-function setupAboutReveal() {
-  const aboutDiv = document.getElementById('about-reveal');
-  if (!aboutDiv) return;
-  const originalText = aboutDiv.textContent.trim();
-  aboutDiv.innerHTML = ''; // clear
-  const words = originalText.split(' ');
-  words.forEach(word => {
-    const span = document.createElement('span');
-    span.textContent = word + ' ';
-    span.style.display = 'inline-block';
-    span.style.opacity = '0';
-    span.style.transform = 'translateY(30px)';
-    aboutDiv.appendChild(span);
-  });
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
   
-  gsap.to('#about-reveal span', {
-    opacity: 1,
-    y: 0,
-    duration: 0.6,
-    stagger: 0.05,
-    ease: 'power2.out',
+  gsap.to('.hero-bg', {
+    y: 100,
+    ease: 'none',
     scrollTrigger: {
-      trigger: '#about',
-      start: 'top 70%',
-      toggleActions: 'play none none none',
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: true,
     },
   });
 }
-setupAboutReveal();
-
-// Services cards stagger (pricing + service items)
-gsap.utils.toArray('.pricing-card, .service-item').forEach((el, i) => {
-  gsap.from(el, {
-    opacity: 0,
-    y: 80,
-    rotationX: -10,
-    duration: 0.8,
-    scrollTrigger: {
-      trigger: el,
-      start: 'top 85%',
-      toggleActions: 'play none none none',
-    },
-    delay: i * 0.1,
-  });
-});
 
 // ========================
 // CONTACT PARTICLES
@@ -152,11 +144,15 @@ const canvas = document.getElementById('particles-canvas');
 if (canvas) {
   const ctx = canvas.getContext('2d');
   let particles = [];
+  let animationId;
   
   function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = canvas.parentElement.offsetHeight;
+    const parent = canvas.parentElement;
+    if (!parent) return;
+    canvas.width = parent.offsetWidth;
+    canvas.height = parent.offsetHeight;
   }
+  
   window.addEventListener('resize', resizeCanvas);
   resizeCanvas();
   
@@ -167,10 +163,10 @@ if (canvas) {
     reset() {
       this.x = Math.random() * canvas.width;
       this.y = Math.random() * canvas.height;
-      this.size = Math.random() * 2 + 1;
-      this.speedX = (Math.random() - 0.5) * 0.5;
-      this.speedY = (Math.random() - 0.5) * 0.5;
-      this.opacity = Math.random() * 0.5 + 0.3;
+      this.size = Math.random() * 2 + 0.5;
+      this.speedX = (Math.random() - 0.5) * 0.3;
+      this.speedY = (Math.random() - 0.5) * 0.3;
+      this.opacity = Math.random() * 0.4 + 0.2;
     }
     update() {
       this.x += this.speedX;
@@ -187,7 +183,7 @@ if (canvas) {
     }
   }
   
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 60; i++) {
     particles.push(new Particle());
   }
   
@@ -197,7 +193,7 @@ if (canvas) {
       p.update();
       p.draw();
     });
-    requestAnimationFrame(animateParticles);
+    animationId = requestAnimationFrame(animateParticles);
   }
   animateParticles();
 }
@@ -206,48 +202,80 @@ if (canvas) {
 // CONTACT FORM
 // ========================
 const contactForm = document.getElementById('contact-form');
-contactForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const formData = new FormData(contactForm);
-  const data = {
-    name: formData.get('name').trim(),
-    email: formData.get('email').trim(),
-    phone: formData.get('phone').trim(),
-    message: formData.get('message').trim(),
-    timestamp: new Date().toISOString(),
-  };
-  
-  // Basic XSS sanitisation (strip HTML tags)
-  const sanitize = (str) => String(str).replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  data.name = sanitize(data.name);
-  data.email = sanitize(data.email);
-  data.phone = sanitize(data.phone);
-  data.message = sanitize(data.message);
-  
-  // Save to localStorage
-  const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
-  messages.push(data);
-  localStorage.setItem('contactMessages', JSON.stringify(messages));
-  
-  // Send email via serverless function
-  try {
-    const response = await fetch('/api/send-email', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    const result = await response.json();
-    if (response.ok) {
-      alert('Message sent successfully!');
-    } else {
-      alert('Message stored locally, but email sending failed. I’ll still get back to you.');
+const formStatus = document.getElementById('form-status');
+const submitBtn = document.getElementById('submit-btn');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Reset status
+    formStatus.className = 'form-status';
+    formStatus.textContent = '';
+    
+    // Loading state
+    submitBtn.disabled = true;
+    submitBtn.classList.add('loading');
+    
+    const formData = new FormData(contactForm);
+    const data = {
+      name: formData.get('name').trim(),
+      email: formData.get('email').trim(),
+      phone: formData.get('phone').trim(),
+      message: formData.get('message').trim(),
+      timestamp: new Date().toISOString(),
+    };
+    
+    // Client-side validation
+    if (!data.name || !data.email || !data.message) {
+      showFormError('Please fill in all required fields.');
+      return;
     }
-  } catch (err) {
-    alert('Message stored locally. Email service temporarily unavailable.');
-  }
-  
-  contactForm.reset();
-});
+    
+    // Save to localStorage (backup)
+    try {
+      const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+      messages.push(data);
+      localStorage.setItem('contactMessages', JSON.stringify(messages));
+    } catch (err) {
+      // localStorage might be full or disabled
+    }
+    
+    // Send to API
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok) {
+        showFormSuccess('Message sent! I\'ll get back to you within 24 hours.');
+        contactForm.reset();
+      } else {
+        showFormError(result.error || 'Something went wrong. Please try WhatsApp instead.');
+      }
+    } catch (err) {
+      showFormError('Email service is down. Your message is saved — I\'ll check it soon.');
+    }
+  });
+}
+
+function showFormSuccess(msg) {
+  formStatus.textContent = msg;
+  formStatus.className = 'form-status success';
+  submitBtn.disabled = false;
+  submitBtn.classList.remove('loading');
+}
+
+function showFormError(msg) {
+  formStatus.textContent = msg;
+  formStatus.className = 'form-status error';
+  submitBtn.disabled = false;
+  submitBtn.classList.remove('loading');
+}
 
 // ========================
 // ADMIN PANEL
@@ -272,39 +300,39 @@ function adminCheck() {
   }
 }
 
-loginBtn.addEventListener('click', () => {
-  if (passwordInput.value === 'negusx2026') {
-    sessionStorage.setItem('adminLoggedIn', 'true');
-    adminCheck();
-  } else {
-    loginError.textContent = 'Incorrect password';
-  }
-});
+if (loginBtn) {
+  loginBtn.addEventListener('click', () => {
+    if (passwordInput.value === 'negusx2026') {
+      sessionStorage.setItem('adminLoggedIn', 'true');
+      adminCheck();
+    } else {
+      loginError.textContent = 'Incorrect password';
+    }
+  });
+}
 
-logoutBtn.addEventListener('click', () => {
-  sessionStorage.removeItem('adminLoggedIn');
-  adminCheck();
-});
+if (logoutBtn) {
+  logoutBtn.addEventListener('click', () => {
+    sessionStorage.removeItem('adminLoggedIn');
+    adminCheck();
+  });
+}
 
 function renderMessages() {
   const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
   if (messages.length === 0) {
-    messagesContainer.innerHTML = '<p>No messages yet.</p>';
+    messagesContainer.innerHTML = '<p style="text-align:center;opacity:0.7;">No messages yet.</p>';
     return;
   }
+  
   let html = '';
   messages.forEach((msg, index) => {
-    // Sanitise for display using DOMPurify
-    const safeName = DOMPurify.sanitize(msg.name);
-    const safeEmail = DOMPurify.sanitize(msg.email);
-    const safePhone = DOMPurify.sanitize(msg.phone);
-    const safeMsg = DOMPurify.sanitize(msg.message);
     const date = new Date(msg.timestamp).toLocaleString();
     html += `
       <div class="message-item">
-        <p><strong>${safeName}</strong> (${safeEmail})</p>
-        <p>📞 ${safePhone}</p>
-        <p>💬 ${safeMsg}</p>
+        <p><strong>${escapeHtml(msg.name)}</strong> (${escapeHtml(msg.email)})</p>
+        <p>📞 ${escapeHtml(msg.phone) || 'N/A'}</p>
+        <p>💬 ${escapeHtml(msg.message)}</p>
         <p><small>${date}</small></p>
         <button class="delete-btn" data-index="${index}">Delete</button>
       </div>
@@ -312,7 +340,6 @@ function renderMessages() {
   });
   messagesContainer.innerHTML = html;
   
-  // Delete handlers
   document.querySelectorAll('.delete-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const idx = e.target.getAttribute('data-index');
@@ -322,4 +349,19 @@ function renderMessages() {
       renderMessages();
     });
   });
+}
+
+function escapeHtml(str) {
+  if (typeof str !== 'string') return '';
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+// Check admin on load if hash is admin
+if (window.location.hash === '#admin') {
+  adminCheck();
 }
