@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>negusX | Premium Web Designer</title>
+  <meta name="description" content="negusX – Premium web design for businesses and individuals. Luxury, performance, and cutting‑edge animations.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  
+  <!-- DOMPurify (for admin panel) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js" defer></script>
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Floating header -->
+  <nav class="navbar">
+    <div class="nav-brand">negusX</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- HOME -->
+    <section id="home" class="page-section active">
+      <div class="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-content">
+          <h1 class="hero-title">negus<span>X</span></h1>
+          <p class="hero-tagline" id="typewriter"></p>
+          <p class="hero-sub">Premium Web Experiences – No Code, Pure Soul.</p>
+        </div>
+        <div class="hero-scroll-indicator">
+          <span>Scroll</span>
+          <div class="scroll-line"></div>
+        </div>
+      </div>
+      
+      <div class="projects">
+        <h2 class="section-heading">Featured Projects</h2>
+        <div class="project-cards">
+          <a href="https://negusfinancial.carrd.co" target="_blank" rel="noopener" class="project-card">
+            <div class="card-overlay"></div>
+            <h3>Negus Financial</h3>
+            <p>Modern fintech landing page</p>
+          </a>
+          <a href="https://kingcuts.carrd.co" target="_blank" rel="noopener" class="project-card">
+            <div class="card-overlay"></div>
+            <h3>King Cuts</h3>
+            <p>Barbershop brand identity</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="page-section">
+      <div class="about-container">
+        <h2 class="section-heading">Who is <span>negusX</span>?</h2>
+        <div class="about-text" id="about-reveal">
+          <!-- Words will be injected by JS -->
+          I help businesses and individuals build premium web presences. No fluff, just quality. From stunning landing pages to full‑stack applications, I craft digital experiences that scream luxury and convert visitors into loyal clients.
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES & PRICING -->
+    <section id="services" class="page-section">
+      <div class="services-header">
+        <h2 class="section-heading">Services & Pricing</h2>
+        <p class="section-sub">Tailored solutions with transparent investment</p>
+      </div>
+      
+      <!-- Services List -->
+      <div class="services-grid">
+        <div class="service-item">UI/UX Design</div>
+        <div class="service-item">Figma‑to‑Code</div>
+        <div class="service-item">Full‑Stack Web Dev</div>
+        <div class="service-item">Landing Page Optimization</div>
+        <div class="service-item">SEO</div>
+        <div class="service-item">Brand Identity</div>
+      </div>
+      
+      <!-- Pricing Tiers -->
+      <div class="pricing-cards">
+        <!-- Basic -->
+        <div class="pricing-card">
+          <h3>Basic</h3>
+          <div class="price">₦30,000</div>
+          <ul>
+            <li>1–2 Pages</li>
+            <li>Minimal Animations</li>
+            <li>1‑Week Free Support</li>
+            <li>50% Upfront</li>
+          </ul>
+          <div class="maintenance">Maintenance: <strong>₦10k/month</strong></div>
+          <a href="https://wa.me/2348082549086?text=Hi%20negusX%2C%20I%27m%20interested%20in%20the%20BASIC%20tier%20(%E2%82%A630%2C000)%20for%20a%20landing%20page.%20Please%20send%20payment%20details." 
+             target="_blank" class="btn-whatsapp">Book via WhatsApp</a>
+        </div>
+        
+        <!-- Advanced -->
+        <div class="pricing-card featured">
+          <h3>Advanced</h3>
+          <div class="price">₦75,000</div>
+          <ul>
+            <li>4–6 Pages</li>
+            <li>Full Page‑Transition Animations</li>
+            <li>Interactive Elements</li>
+            <li>2‑Week Free Support</li>
+            <li>50% Upfront</li>
+          </ul>
+          <div class="maintenance">Maintenance: <strong>₦20k/month</strong></div>
+          <a href="https://wa.me/2348082549086?text=Hi%20negusX%2C%20I%27m%20interested%20in%20the%20ADVANCED%20tier%20(%E2%82%A675%2C000)%20for%20a%20website.%20Please%20send%20payment%20details." 
+             target="_blank" class="btn-whatsapp">Book via WhatsApp</a>
+        </div>
+        
+        <!-- Premium -->
+        <div class="pricing-card">
+          <h3>Premium</h3>
+          <div class="price">₦150,000</div>
+          <ul>
+            <li>Unlimited Pages</li>
+            <li>GSAP‑Heavy Animations</li>
+            <li>Admin Panel Included</li>
+            <li>1‑Month Free Support</li>
+            <li>50% Upfront</li>
+          </ul>
+          <div class="maintenance">Maintenance: <strong>₦35k/month</strong></div>
+          <a href="https://wa.me/2348082549086?text=Hi%20negusX%2C%20I%27m%20interested%20in%20the%20PREMIUM%20tier%20(%E2%82%A6150%2C000)%20for%20a%20full%20site.%20Please%20send%20payment%20details." 
+             target="_blank" class="btn-whatsapp">Book via WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="page-section">
+      <canvas id="particles-canvas"></canvas>
+      <div class="contact-container">
+        <h2 class="section-heading">Let’s Build Royalty</h2>
+        <div class="contact-content">
+          <div class="contact-info">
+            <p><a href="tel:+2348082549086">📞 08082549086</a></p>
+            <p><a href="https://wa.me/2348082549086" target="_blank">💬 WhatsApp</a></p>
+            <p><a href="mailto:shuraasura8@gmail.com">✉️ shuraasura8@gmail.com</a></p>
+          </div>
+          <form id="contact-form" class="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="tel" name="phone" placeholder="Phone Number">
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit" class="btn-submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMIN (Hidden Route) -->
+    <section id="admin" class="page-section admin-section">
+      <div id="admin-login" class="admin-login">
+        <h2>Admin Access</h2>
+        <input type="password" id="admin-password" placeholder="Enter password">
+        <button id="admin-login-btn">Login</button>
+        <p id="login-error" class="error-msg"></p>
+      </div>
+      <div id="admin-dashboard" class="admin-dashboard" style="display:none;">
+        <h2>Messages Dashboard</h2>
+        <button id="admin-logout" class="btn-logout">Logout</button>
+        <div id="messages-container">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 negusX. All rights reserved.</p>
+    <p class="privacy-note">Data collected via forms is stored locally and used solely for communication. No third‑party data sharing.</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
