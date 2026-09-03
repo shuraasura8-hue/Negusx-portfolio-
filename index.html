@@ -3,42 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>negusX — Web Designer</title>
-  <meta name="description" content="Custom websites and web design for Nigerian businesses. Fast, conversion-focused, no templates.">
+  <title>NegusX — Web Designer</title>
+  <meta name="description" content="Web design for Nigerian businesses that need to look credible and convert visitors.">
   
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>">
+  <!-- Google Search Console Verification -->
+  <meta name="google-site-verification" content="PASTE_YOUR_CODE_HERE" />
   
   <!-- Open Graph -->
-  <meta property="og:title" content="negusX — Web Designer">
-  <meta property="og:description" content="Custom websites for Nigerian businesses. No templates, just results.">
+  <meta property="og:title" content="NegusX — Web Designer">
+  <meta property="og:description" content="Web design for Nigerian businesses. No templates, just results.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://negusx-portfolio.vercel.app">
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="negusX — Web Designer">
-  <meta name="twitter:description" content="Custom websites for Nigerian businesses.">
+  <meta name="twitter:title" content="NegusX — Web Designer">
+  <meta name="twitter:description" content="Web design for Nigerian businesses.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-  
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Sticky header -->
+
   <header class="navbar">
-    <a href="#home" class="nav-brand">negusX</a>
+    <a href="#home" class="nav-brand">NegusX</a>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-    <nav>
+    <nav class="nav-menu">
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#work">Work</a></li>
@@ -50,206 +49,179 @@
   </header>
 
   <main>
-    <!-- HOME / HERO -->
-    <section id="home" class="page-section active">
-      <div class="hero">
-        <div class="hero-bg" aria-hidden="true"></div>
-        <div class="hero-content">
-          <p class="eyebrow">Available for projects</p>
-          <h1 class="hero-title">negus<span>X</span></h1>
-          <p class="hero-tagline" id="typewriter"></p>
-          <p class="hero-sub">Web design for Nigerian businesses that need to look credible and convert visitors.</p>
-          <div class="hero-cta">
-            <a href="#work" class="btn-primary">View selected work</a>
-            <a href="#contact" class="btn-secondary">Start a project</a>
-          </div>
-          <p class="hero-location">Based in Lagos · Working worldwide</p>
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">Available for projects</p>
+        <h1 class="hero-title">NegusX</h1>
+        <p class="hero-sub">Web design for Nigerian businesses that need to look credible and convert visitors.</p>
+        <div class="hero-cta">
+          <a href="#work" class="btn btn-primary">View work</a>
+          <a href="#contact" class="btn btn-ghost">Start a project</a>
         </div>
-        <div class="hero-scroll-indicator">
-          <span>Scroll</span>
-          <div class="scroll-line"></div>
-        </div>
+        <p class="hero-location">Lagos, Nigeria · Working worldwide</p>
       </div>
     </section>
 
-    <!-- WORK -->
-    <section id="work" class="page-section">
-      <h2 class="section-heading">Selected Work</h2>
-      <div class="project-cards">
-        <article class="project-card">
-          <div class="card-image">
-            <div class="card-placeholder">Negus Financial</div>
-          </div>
-          <div class="card-body">
-            <h3>Negus Financial</h3>
-            <p class="card-tags">Landing Page · Figma-to-Code</p>
-            <p>A fintech landing page built to build trust and drive sign-ups.</p>
-            <a href="https://negusfinancial.carrd.co" target="_blank" rel="noopener" class="card-link">View live site →</a>
-          </div>
-        </article>
+    <section id="work" class="work">
+      <div class="container">
+        <p class="section-label">Selected Work</p>
+        <h2 class="section-heading">Projects</h2>
         
-        <article class="project-card">
-          <div class="card-image">
-            <div class="card-placeholder">King Cuts</div>
+        <article class="project project-left">
+          <div class="project-visual">
+            <img src="images/negus-financial.jpg" alt="Negus Financial - Fintech landing page" class="project-image">
+            <span class="project-num">01</span>
           </div>
-          <div class="card-body">
+          <div class="project-info">
+            <p class="project-tags">Landing Page · Figma-to-Code</p>
+            <h3>Negus Financial</h3>
+            <p>A fintech landing page built to build trust and drive sign-ups.</p>
+            <a href="https://negusfinancial.carrd.co" target="_blank" rel="noopener" class="project-link">View live site →</a>
+          </div>
+        </article>
+
+        <article class="project project-right">
+          <div class="project-visual">
+            <img src="images/king-cuts.jpg" alt="King Cuts - Barbershop brand website" class="project-image">
+            <span class="project-num">02</span>
+          </div>
+          <div class="project-info">
+            <p class="project-tags">Brand Identity · Landing Page</p>
             <h3>King Cuts</h3>
-            <p class="card-tags">Brand Identity · Landing Page</p>
             <p>Brand and web presence for a premium barbershop.</p>
-            <a href="https://kingcuts.carrd.co" target="_blank" rel="noopener" class="card-link">View live site →</a>
+            <a href="https://kingcuts.carrd.co" target="_blank" rel="noopener" class="project-link">View live site →</a>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="page-section">
-      <div class="about-container">
-        <div class="about-visual">
-          <div class="about-photo-placeholder">Your photo</div>
+    <section id="about" class="about">
+      <div class="container about-grid">
+        <div class="about-photo">
+          <div class="photo-placeholder">Your photo</div>
         </div>
         <div class="about-content">
-          <h2 class="section-heading">About</h2>
-          <div class="about-text" id="about-reveal">
-            I'm a web designer and frontend developer based in Lagos. I build fast, clean websites for small businesses and startups that need to look professional without the agency price tag. No templates. No bloat. Just code that works on every device and copy that actually sells.
-          </div>
+          <p class="section-label">About</p>
+          <h2 class="section-heading">Who I Am</h2>
+          <p class="about-text">I'm a web designer and frontend developer based in Lagos. I build fast, clean websites for small businesses and startups that need to look professional without the agency price tag. No templates. No bloat. Just code that works on every device and copy that actually sells.</p>
           <div class="about-stats">
-            <div><strong>20+</strong><span>Projects</span></div>
-            <div><strong>3+</strong><span>Years</span></div>
-            <div><strong>100%</strong><span>Satisfaction</span></div>
+            <div class="stat"><strong>20+</strong><span>Projects</span></div>
+            <div class="stat"><strong>3+</strong><span>Years</span></div>
+            <div class="stat"><strong>Lagos</strong><span>Based</span></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SERVICES -->
-    <section id="services" class="page-section">
-      <div class="services-header">
-        <h2 class="section-heading">Services</h2>
-        <p class="section-sub">Three things I do well. Everything else is a conversation.</p>
-      </div>
-      
-      <div class="services-grid">
-        <article class="service-item">
-          <h3>Web Design</h3>
-          <p>Custom landing pages and multi-page sites built from scratch. Mobile-first, fast, and designed to convert.</p>
-        </article>
-        <article class="service-item">
-          <h3>Frontend Development</h3>
-          <p>HTML, CSS, JavaScript, React. Clean code that scales and performs on every device.</p>
-        </article>
-        <article class="service-item">
-          <h3>Brand Identity</h3>
-          <p>Logo, color system, and typography that actually matches your business.</p>
-        </article>
-      </div>
-      
-      <p class="services-note">Also available: Figma-to-code, SEO setup, and landing page optimization.</p>
-    </section>
-
-    <!-- PRICING -->
-    <section id="pricing" class="page-section">
-      <h2 class="section-heading">Pricing</h2>
-      <p class="section-sub">Transparent pricing. No hidden fees.</p>
-      
-      <div class="pricing-cards">
-        <div class="pricing-card">
-          <h3>Basic</h3>
-          <div class="price">₦30,000</div>
-          <ul>
-            <li>1–2 Pages</li>
-            <li>Minimal Animations</li>
-            <li>1‑Week Free Support</li>
-          </ul>
-          <div class="maintenance">Maintenance: <strong>₦10k/month</strong></div>
-          <a href="https://wa.me/2348082549086?text=Hi%20negusX%2C%20I%27m%20interested%20in%20the%20BASIC%20tier." target="_blank" class="btn-whatsapp">Book via WhatsApp</a>
-        </div>
-        
-        <div class="pricing-card featured">
-          <h3>Advanced</h3>
-          <div class="price">₦75,000</div>
-          <ul>
-            <li>4–6 Pages</li>
-            <li>Page Transitions & Interactions</li>
-            <li>2‑Week Free Support</li>
-          </ul>
-          <div class="maintenance">Maintenance: <strong>₦20k/month</strong></div>
-          <a href="https://wa.me/2348082549086?text=Hi%20negusX%2C%20I%27m%20interested%20in%20the%20ADVANCED%20tier." target="_blank" class="btn-whatsapp">Book via WhatsApp</a>
-        </div>
-        
-        <div class="pricing-card">
-          <h3>Premium</h3>
-          <div class="price">₦150,000</div>
-          <ul>
-            <li>Unlimited Pages</li>
-            <li>GSAP Animations</li>
-            <li>Admin Panel Included</li>
-            <li>1‑Month Free Support</li>
-          </ul>
-          <div class="maintenance">Maintenance: <strong>₦35k/month</strong></div>
-          <a href="https://wa.me/2348082549086?text=Hi%20negusX%2C%20I%27m%20interested%20in%20the%20PREMIUM%20tier." target="_blank" class="btn-whatsapp">Book via WhatsApp</a>
-        </div>
-      </div>
-      
-      <div class="pricing-terms">
-        <p>50% deposit required to begin. Final 50% due before launch. Prices negotiable for long-term partnerships.</p>
-      </div>
-    </section>
-
-    <!-- PROCESS -->
-    <section id="process" class="page-section">
-      <h2 class="section-heading">How It Works</h2>
-      <div class="process-steps">
-        <div class="process-step">
-          <span class="step-number">01</span>
-          <h3>Discovery</h3>
-          <p>You tell me what you need. I ask questions. We agree on scope and price.</p>
-        </div>
-        <div class="process-step">
-          <span class="step-number">02</span>
-          <h3>Design</h3>
-          <p>I design the layout in Figma. You review and approve before I write any code.</p>
-        </div>
-        <div class="process-step">
-          <span class="step-number">03</span>
-          <h3>Build</h3>
-          <p>I build the site. You get a preview link. We revise until it's right.</p>
-        </div>
-        <div class="process-step">
-          <span class="step-number">04</span>
-          <h3>Launch</h3>
-          <p>I deploy it, hand over the keys, and stay available for support.</p>
+    <section id="services" class="services">
+      <div class="container">
+        <p class="section-label">Services</p>
+        <h2 class="section-heading">What I Do</h2>
+        <div class="services-grid">
+          <article class="service-card">
+            <h3>Web Design</h3>
+            <p>Custom landing pages and multi-page sites built from scratch. Mobile-first, fast, and designed to convert.</p>
+          </article>
+          <article class="service-card">
+            <h3>Frontend Development</h3>
+            <p>HTML, CSS, JavaScript, React. Clean code that scales and performs on every device.</p>
+          </article>
+          <article class="service-card">
+            <h3>Brand Identity</h3>
+            <p>Logo, color system, and typography that actually matches your business.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- TESTIMONIALS -->
-    <section id="testimonials" class="page-section">
-      <h2 class="section-heading">What Clients Say</h2>
-      <div class="testimonials-grid">
-        <blockquote class="testimonial">
-          <p>"negusX delivered our landing page in 5 days. It looks better than our competitor's site that cost 3x more."</p>
-          <footer>— Client Name, Business</footer>
-        </blockquote>
-        <blockquote class="testimonial">
-          <p>"Professional, fast, and actually listens to feedback. Already booked the next project."</p>
-          <footer>— Client Name, Business</footer>
-        </blockquote>
+    <section id="pricing" class="pricing">
+      <div class="container">
+        <p class="section-label">Pricing</p>
+        <h2 class="section-heading">Investment</h2>
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <h3>Basic</h3>
+            <div class="price">₦30,000</div>
+            <ul>
+              <li>1–2 Pages</li>
+              <li>Minimal Animations</li>
+              <li>1-Week Free Support</li>
+            </ul>
+            <div class="maintenance">Maintenance: <strong>₦10k/month</strong></div>
+            <a href="https://wa.me/2348082549086?text=Hi%20NegusX%2C%20I%27m%20interested%20in%20the%20BASIC%20tier." target="_blank" class="btn btn-whatsapp">Book via WhatsApp</a>
+          </div>
+          <div class="pricing-card featured">
+            <span class="badge">Popular</span>
+            <h3>Advanced</h3>
+            <div class="price">₦75,000</div>
+            <ul>
+              <li>4–6 Pages</li>
+              <li>Page Transitions & Interactions</li>
+              <li>2-Week Free Support</li>
+            </ul>
+            <div class="maintenance">Maintenance: <strong>₦20k/month</strong></div>
+            <a href="https://wa.me/2348082549086?text=Hi%20NegusX%2C%20I%27m%20interested%20in%20the%20ADVANCED%20tier." target="_blank" class="btn btn-whatsapp">Book via WhatsApp</a>
+          </div>
+          <div class="pricing-card">
+            <h3>Premium</h3>
+            <div class="price">₦150,000</div>
+            <ul>
+              <li>Unlimited Pages</li>
+              <li>GSAP Animations</li>
+              <li>Admin Panel Included</li>
+              <li>1-Month Free Support</li>
+            </ul>
+            <div class="maintenance">Maintenance: <strong>₦35k/month</strong></div>
+            <a href="https://wa.me/2348082549086?text=Hi%20NegusX%2C%20I%27m%20interested%20in%20the%20PREMIUM%20tier." target="_blank" class="btn btn-whatsapp">Book via WhatsApp</a>
+          </div>
+        </div>
+        <p class="pricing-terms">50% deposit required to begin. Final 50% due before launch. Prices negotiable for long-term partnerships.</p>
       </div>
-      <p class="testimonials-note">Replace with real testimonials when you have them.</p>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="page-section">
-      <div class="contact-container">
+    <section id="process" class="process">
+      <div class="container">
+        <p class="section-label">Process</p>
+        <h2 class="section-heading">How It Works</h2>
+        <div class="process-wrapper">
+          <div class="process-line"><div class="process-line-fill"></div></div>
+          <div class="process-steps">
+            <div class="process-step">
+              <span class="step-num">01</span>
+              <h3>Discovery</h3>
+              <p>You tell me what you need. I ask questions. We agree on scope and price.</p>
+            </div>
+            <div class="process-step">
+              <span class="step-num">02</span>
+              <h3>Design</h3>
+              <p>I design the layout in Figma. You review and approve before I write any code.</p>
+            </div>
+            <div class="process-step">
+              <span class="step-num">03</span>
+              <h3>Build</h3>
+              <p>I build the site. You get a preview link. We revise until it's right.</p>
+            </div>
+            <div class="process-step">
+              <span class="step-num">04</span>
+              <h3>Launch</h3>
+              <p>I deploy it, hand over the keys, and stay available for support.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <p class="section-label">Contact</p>
         <h2 class="section-heading">Let's Work Together</h2>
-        <p class="section-sub">Tell me what you're building. I'll respond within 24 hours.</p>
+        <p class="contact-sub">Tell me what you're building. I'll respond within 24 hours.</p>
         
-        <div class="contact-content">
+        <div class="contact-grid">
           <div class="contact-info">
             <p><a href="tel:+2348082549086">📞 08082549086</a></p>
             <p><a href="https://wa.me/2348082549086" target="_blank">💬 WhatsApp</a></p>
-            <p><a href="mailto:shuraasura8@gmail.com">✉️ shuraasura8@gmail.com</a></p>
+            <p><a href="mailto:negusX13@gmail.com">✉️ negusX13@gmail.com</a></p>
           </div>
           
           <form id="contact-form" class="contact-form">
@@ -258,7 +230,7 @@
             <input type="email" name="email" placeholder="Your Email" required>
             <input type="tel" name="phone" placeholder="Phone Number">
             <textarea name="message" placeholder="Tell me about your project" rows="5" required maxlength="2000"></textarea>
-            <button type="submit" class="btn-submit" id="submit-btn">
+            <button type="submit" class="btn btn-submit" id="submit-btn">
               <span class="btn-text">Send Message</span>
               <span class="btn-loader" hidden>Sending...</span>
             </button>
@@ -266,39 +238,21 @@
         </div>
       </div>
     </section>
-
-    <!-- ADMIN (Hidden) -->
-    <section id="admin" class="page-section admin-section">
-      <div id="admin-login" class="admin-login">
-        <h2>Admin Access</h2>
-        <input type="password" id="admin-password" placeholder="Enter password">
-        <button id="admin-login-btn">Login</button>
-        <p id="login-error" class="error-msg"></p>
-      </div>
-      <div id="admin-dashboard" class="admin-dashboard" style="display:none;">
-        <h2>Messages Dashboard</h2>
-        <button id="admin-logout" class="btn-logout">Logout</button>
-        <div id="messages-container"></div>
-      </div>
-    </section>
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer">
-    <nav class="footer-nav" aria-label="Footer navigation">
+    <nav class="footer-nav" aria-label="Footer">
       <a href="#home">Home</a>
       <a href="#work">Work</a>
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#contact">Contact</a>
     </nav>
-    <p>© 2026 negusX. All rights reserved.</p>
+    <p>© 2026 NegusX. All rights reserved.</p>
   </footer>
 
-  <!-- Back to top -->
   <a href="#home" class="back-to-top" aria-label="Back to top">↑</a>
 
-  <script src="script.js" defer></script>
+  <script src="script.js"></script>
 </body>
 </html>
-
