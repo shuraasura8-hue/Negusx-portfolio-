@@ -1,208 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NegusX — Web Designer</title>
-  <meta name="description" content="Web design for Nigerian businesses that need to look credible and convert visitors.">
-  
-  <!-- Google Search Console Verification -->
-  <meta name="google-site-verification" content="PASTE_YOUR_CODE_HERE" />
-  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NegusX — Web Designer for Nigerian Businesses</title>
+  <meta name="description" content="NegusX builds fast, credible, conversion-focused websites for Nigerian businesses. Web design and frontend development from Lagos, working worldwide." />
+  <meta name="theme-color" content="#0a0a0a" />
+
   <!-- Open Graph -->
-  <meta property="og:title" content="NegusX — Web Designer">
-  <meta property="og:description" content="Web design for Nigerian businesses. No templates, just results.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://negusx-portfolio.vercel.app">
-  
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="NegusX — Web Designer">
-  <meta name="twitter:description" content="Web design for Nigerian businesses.">
-  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="NegusX — Web Designer for Nigerian Businesses" />
+  <meta property="og:description" content="Web design for Nigerian businesses that need to look credible and convert visitors. Lagos, Nigeria · Working worldwide." />
+  <meta property="og:url" content="https://negusx-portfolio.vercel.app" />
+  <meta property="og:site_name" content="NegusX" />
+
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>">
-  
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230a0a0a'/%3E%3Ctext x='32' y='45' font-family='Inter,Arial,sans-serif' font-size='36' font-weight='700' fill='%237c3aed' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E" />
+
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+<base target="_blank">
 </head>
 <body>
 
-  <header class="navbar">
-    <a href="#home" class="nav-brand">NegusX</a>
-    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="nav-menu">
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="navbar" id="navbar">
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="#hero" class="logo">NegusX</a>
+
+      <ul class="nav-links" id="nav-links">
         <li><a href="#work">Work</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#contact" class="nav-cta">Start a project</a></li>
       </ul>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
     </nav>
   </header>
 
   <main>
-    <section id="home" class="hero">
-      <div class="hero-content">
-        <p class="eyebrow">Available for projects</p>
-        <h1 class="hero-title">NegusX</h1>
-        <p class="hero-sub">Web design for Nigerian businesses that need to look credible and convert visitors.</p>
-        <div class="hero-cta">
-          <a href="#work" class="btn btn-primary">View work</a>
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="hero">
+      <div class="container">
+        <p class="eyebrow reveal"><span class="pulse-dot" aria-hidden="true"></span>Available for projects</p>
+        <h1 class="hero-title reveal" data-delay="0.1s">NegusX</h1>
+        <p class="hero-sub reveal" data-delay="0.2s">Web design for Nigerian businesses that need to look credible and convert visitors.</p>
+        <div class="hero-ctas reveal" data-delay="0.3s">
+          <a href="#work" class="btn btn-filled">View work</a>
           <a href="#contact" class="btn btn-ghost">Start a project</a>
         </div>
-        <p class="hero-location">Lagos, Nigeria · Working worldwide</p>
+        <p class="hero-location reveal" data-delay="0.4s">Lagos, Nigeria &middot; Working worldwide</p>
       </div>
     </section>
 
-    <section id="work" class="work">
+    <!-- ===================== WORK ===================== -->
+    <section class="work section" id="work">
       <div class="container">
-        <p class="section-label">Selected Work</p>
-        <h2 class="section-heading">Projects</h2>
-        
-        <article class="project project-left">
-          <div class="project-visual">
-            <img src="images/negus-financial.jpg" alt="Negus Financial - Fintech landing page" class="project-image">
-            <span class="project-num">01</span>
-          </div>
-          <div class="project-info">
-            <p class="project-tags">Landing Page · Figma-to-Code</p>
-            <h3>Negus Financial</h3>
-            <p>A fintech landing page built to build trust and drive sign-ups.</p>
-            <a href="https://negusfinancial.carrd.co" target="_blank" rel="noopener" class="project-link">View live site →</a>
+        <div class="section-head reveal">
+          <p class="eyebrow">Selected Work</p>
+          <h2 class="section-title">Projects</h2>
+        </div>
+
+        <!-- Project 1 -->
+        <article class="project reveal">
+          <span class="project-num" aria-hidden="true">01</span>
+          <div class="project-grid">
+            <div class="project-media">
+              <img src="images/negus-financial.jpg" alt="Negus Financial fintech landing page" loading="lazy" />
+            </div>
+            <div class="project-text">
+              <p class="project-tags">Landing Page &middot; Figma-to-Code</p>
+              <h3 class="project-title">Negus Financial</h3>
+              <p class="project-desc">A fintech landing page built to build trust and drive sign-ups.</p>
+              <a href="https://negusfinancial.carrd.co" class="project-link" target="_blank" rel="noopener">View live site &rarr;</a>
+            </div>
           </div>
         </article>
 
-        <article class="project project-right">
-          <div class="project-visual">
-            <img src="images/king-cuts.jpg" alt="King Cuts - Barbershop brand website" class="project-image">
-            <span class="project-num">02</span>
-          </div>
-          <div class="project-info">
-            <p class="project-tags">Brand Identity · Landing Page</p>
-            <h3>King Cuts</h3>
-            <p>Brand and web presence for a premium barbershop.</p>
-            <a href="https://kingcuts.carrd.co" target="_blank" rel="noopener" class="project-link">View live site →</a>
+        <!-- Project 2 -->
+        <article class="project project-alt reveal">
+          <span class="project-num" aria-hidden="true">02</span>
+          <div class="project-grid">
+            <div class="project-media">
+              <img src="images/king-cuts.jpg" alt="King Cuts barbershop website" loading="lazy" />
+            </div>
+            <div class="project-text">
+              <p class="project-tags">Brand Identity &middot; Landing Page</p>
+              <h3 class="project-title">King Cuts</h3>
+              <p class="project-desc">Brand and web presence for a premium barbershop.</p>
+              <a href="https://kingcuts.carrd.co" class="project-link" target="_blank" rel="noopener">View live site &rarr;</a>
+            </div>
           </div>
         </article>
       </div>
     </section>
 
-    <section id="about" class="about">
-      <div class="container about-grid">
-        <div class="about-photo">
-          <div class="photo-placeholder">Your photo</div>
-        </div>
-        <div class="about-content">
-          <p class="section-label">About</p>
-          <h2 class="section-heading">Who I Am</h2>
-          <p class="about-text">I'm a web designer and frontend developer based in Lagos. I build fast, clean websites for small businesses and startups that need to look professional without the agency price tag. No templates. No bloat. Just code that works on every device and copy that actually sells.</p>
-          <div class="about-stats">
-            <div class="stat"><strong>20+</strong><span>Projects</span></div>
-            <div class="stat"><strong>3+</strong><span>Years</span></div>
-            <div class="stat"><strong>Lagos</strong><span>Based</span></div>
+    <!-- ===================== ABOUT ===================== -->
+    <section class="about section" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-photo reveal">
+            <img class="photo" src="images/portrait.jpg" alt="NegusX" loading="lazy" />
+          </div>
+          <div class="about-text reveal" data-delay="0.1s">
+            <p class="eyebrow">About</p>
+            <h2 class="section-title">Who I Am</h2>
+            <p>I'm a web designer and frontend developer based in Lagos. I build fast, clean websites for small businesses and startups that need to look professional without the agency price tag. No templates. No bloat. Just code that works on every device and pages that actually convert.</p>
+            <ul class="stats">
+              <li><strong>20+</strong><span>Projects</span></li>
+              <li><strong>3+</strong><span>Years</span></li>
+              <li><strong>Lagos</strong><span>Based</span></li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="services" class="services">
+    <!-- ===================== SERVICES ===================== -->
+    <section class="services section" id="services">
       <div class="container">
-        <p class="section-label">Services</p>
-        <h2 class="section-heading">What I Do</h2>
+        <div class="section-head reveal">
+          <p class="eyebrow">Services</p>
+          <h2 class="section-title">What I Do</h2>
+        </div>
+
         <div class="services-grid">
-          <article class="service-card">
+          <article class="service-card reveal">
             <h3>Web Design</h3>
             <p>Custom landing pages and multi-page sites built from scratch. Mobile-first, fast, and designed to convert.</p>
           </article>
-          <article class="service-card">
+          <article class="service-card reveal" data-delay="0.1s">
             <h3>Frontend Development</h3>
-            <p>HTML, CSS, JavaScript, React. Clean code that scales and performs on every device.</p>
+            <p>HTML, CSS, and JavaScript. Clean code that performs on every device and is easy to maintain.</p>
           </article>
-          <article class="service-card">
+          <article class="service-card reveal" data-delay="0.2s">
             <h3>Brand Identity</h3>
-            <p>Logo, color system, and typography that actually matches your business.</p>
+            <p>Logo, color system, and typography that actually match your business and stick in people's minds.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="pricing" class="pricing">
+    <!-- ===================== PRICING ===================== -->
+    <section class="pricing section" id="pricing">
       <div class="container">
-        <p class="section-label">Pricing</p>
-        <h2 class="section-heading">Investment</h2>
+        <div class="section-head reveal">
+          <p class="eyebrow">Pricing</p>
+          <h2 class="section-title">Investment</h2>
+        </div>
+
         <div class="pricing-grid">
-          <div class="pricing-card">
+          <!-- Basic -->
+          <article class="price-card reveal">
             <h3>Basic</h3>
-            <div class="price">₦30,000</div>
+            <p class="price"><span class="currency">&#8358;</span>30,000</p>
             <ul>
-              <li>1–2 Pages</li>
+              <li>1&ndash;2 Pages</li>
               <li>Minimal Animations</li>
               <li>1-Week Free Support</li>
             </ul>
-            <div class="maintenance">Maintenance: <strong>₦10k/month</strong></div>
-            <a href="https://wa.me/2348082549086?text=Hi%20NegusX%2C%20I%27m%20interested%20in%20the%20BASIC%20tier." target="_blank" class="btn btn-whatsapp">Book via WhatsApp</a>
-          </div>
-          <div class="pricing-card featured">
+            <p class="maintenance">Maintenance: <strong>&#8358;10k/month</strong></p>
+            <a href="https://wa.me/2348082549086?text=Hi%20NegusX%2C%20I%27m%20interested%20in%20the%20Basic%20plan" class="btn btn-ghost btn-block" target="_blank" rel="noopener">Book via WhatsApp</a>
+          </article>
+
+          <!-- Advanced (featured) -->
+          <article class="price-card price-card--featured reveal" data-delay="0.1s">
             <span class="badge">Popular</span>
             <h3>Advanced</h3>
-            <div class="price">₦75,000</div>
+            <p class="price"><span class="currency">&#8358;</span>75,000</p>
             <ul>
-              <li>4–6 Pages</li>
-              <li>Page Transitions & Interactions</li>
+              <li>4&ndash;6 Pages</li>
+              <li>Page Transitions &amp; Interactions</li>
               <li>2-Week Free Support</li>
             </ul>
-            <div class="maintenance">Maintenance: <strong>₦20k/month</strong></div>
-            <a href="https://wa.me/2348082549086?text=Hi%20NegusX%2C%20I%27m%20interested%20in%20the%20ADVANCED%20tier." target="_blank" class="btn btn-whatsapp">Book via WhatsApp</a>
-          </div>
-          <div class="pricing-card">
+            <p class="maintenance">Maintenance: <strong>&#8358;20k/month</strong></p>
+            <a href="https://wa.me/2348082549086?text=Hi%20NegusX%2C%20I%27m%20interested%20in%20the%20Advanced%20plan" class="btn btn-filled btn-block" target="_blank" rel="noopener">Book via WhatsApp</a>
+          </article>
+
+          <!-- Premium -->
+          <article class="price-card reveal" data-delay="0.2s">
             <h3>Premium</h3>
-            <div class="price">₦150,000</div>
+            <p class="price"><span class="currency">&#8358;</span>120,000</p>
             <ul>
               <li>Unlimited Pages</li>
-              <li>GSAP Animations</li>
-              <li>Admin Panel Included</li>
+              <li>Advanced Animations</li>
+              <li>Priority Support &amp; Training</li>
               <li>1-Month Free Support</li>
             </ul>
-            <div class="maintenance">Maintenance: <strong>₦35k/month</strong></div>
-            <a href="https://wa.me/2348082549086?text=Hi%20NegusX%2C%20I%27m%20interested%20in%20the%20PREMIUM%20tier." target="_blank" class="btn btn-whatsapp">Book via WhatsApp</a>
-          </div>
+            <p class="maintenance">Maintenance: <strong>&#8358;35k/month</strong></p>
+            <a href="https://wa.me/2348082549086?text=Hi%20NegusX%2C%20I%27m%20interested%20in%20the%20Premium%20plan" class="btn btn-ghost btn-block" target="_blank" rel="noopener">Book via WhatsApp</a>
+          </article>
         </div>
-        <p class="pricing-terms">50% deposit required to begin. Final 50% due before launch. Prices negotiable for long-term partnerships.</p>
+
+        <p class="pricing-terms reveal">50% deposit required. Final 50% due before launch.</p>
       </div>
     </section>
 
-    <section id="process" class="process">
+    <!-- ===================== PROCESS ===================== -->
+    <section class="process section" id="process">
       <div class="container">
-        <p class="section-label">Process</p>
-        <h2 class="section-heading">How It Works</h2>
-        <div class="process-wrapper">
-          <div class="process-line"><div class="process-line-fill"></div></div>
-          <div class="process-steps">
-            <div class="process-step">
-              <span class="step-num">01</span>
+        <div class="section-head reveal">
+          <p class="eyebrow">Process</p>
+          <h2 class="section-title">How It Works</h2>
+        </div>
+
+        <div class="process-steps" id="process-steps">
+          <div class="process-line" aria-hidden="true"><span class="process-line-fill" id="process-line-fill"></span></div>
+
+          <div class="step reveal">
+            <span class="step-num">01</span>
+            <div class="step-body">
               <h3>Discovery</h3>
               <p>You tell me what you need. I ask questions. We agree on scope and price.</p>
             </div>
-            <div class="process-step">
-              <span class="step-num">02</span>
+          </div>
+          <div class="step reveal" data-delay="0.1s">
+            <span class="step-num">02</span>
+            <div class="step-body">
               <h3>Design</h3>
               <p>I design the layout in Figma. You review and approve before I write any code.</p>
             </div>
-            <div class="process-step">
-              <span class="step-num">03</span>
+          </div>
+          <div class="step reveal" data-delay="0.2s">
+            <span class="step-num">03</span>
+            <div class="step-body">
               <h3>Build</h3>
               <p>I build the site. You get a preview link. We revise until it's right.</p>
             </div>
-            <div class="process-step">
-              <span class="step-num">04</span>
+          </div>
+          <div class="step reveal" data-delay="0.3s">
+            <span class="step-num">04</span>
+            <div class="step-body">
               <h3>Launch</h3>
               <p>I deploy it, hand over the keys, and stay available for support.</p>
             </div>
@@ -211,47 +251,80 @@
       </div>
     </section>
 
-    <section id="contact" class="contact">
+    <!-- ===================== CONTACT ===================== -->
+    <section class="contact section" id="contact">
       <div class="container">
-        <p class="section-label">Contact</p>
-        <h2 class="section-heading">Let's Work Together</h2>
-        <p class="contact-sub">Tell me what you're building. I'll respond within 24 hours.</p>
-        
+        <div class="section-head reveal">
+          <p class="eyebrow">Contact</p>
+          <h2 class="section-title">Let's Work Together</h2>
+          <p class="section-sub">Tell me what you're building. I'll respond within 24 hours.</p>
+        </div>
+
         <div class="contact-grid">
-          <div class="contact-info">
-            <p><a href="tel:+2348082549086">📞 08082549086</a></p>
-            <p><a href="https://wa.me/2348082549086" target="_blank">💬 WhatsApp</a></p>
-            <p><a href="mailto:negusX13@gmail.com">✉️ negusX13@gmail.com</a></p>
-          </div>
-          
-          <form id="contact-form" class="contact-form">
-            <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
-            <input type="text" name="name" placeholder="Your Name" required maxlength="100">
-            <input type="email" name="email" placeholder="Your Email" required>
-            <input type="tel" name="phone" placeholder="Phone Number">
-            <textarea name="message" placeholder="Tell me about your project" rows="5" required maxlength="2000"></textarea>
-            <button type="submit" class="btn btn-submit" id="submit-btn">
-              <span class="btn-text">Send Message</span>
-              <span class="btn-loader" hidden>Sending...</span>
+          <form class="contact-form reveal" id="contact-form" action="/api/send-email" method="POST" novalidate>
+            <div class="form-row">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required autocomplete="name" />
+            </div>
+            <div class="form-row">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required autocomplete="email" />
+            </div>
+            <div class="form-row">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" />
+            </div>
+            <div class="form-row">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-filled btn-block" id="submit-btn">
+              <span class="btn-label">Send message</span>
+              <span class="btn-spinner" aria-hidden="true"></span>
             </button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
           </form>
+
+          <aside class="contact-aside reveal" data-delay="0.1s">
+            <a class="contact-alt whatsapp" href="https://wa.me/2348082549086" target="_blank" rel="noopener">
+              <span class="contact-alt-label">WhatsApp</span>
+              <span class="contact-alt-value">Chat now &rarr;</span>
+            </a>
+            <a class="contact-alt" href="mailto:negusX13@gmail.com">
+              <span class="contact-alt-label">Email</span>
+              <span class="contact-alt-value">negusX13@gmail.com</span>
+            </a>
+            <a class="contact-alt" href="tel:+2348082549086">
+              <span class="contact-alt-label">Phone</span>
+              <span class="contact-alt-value">08082549086</span>
+            </a>
+          </aside>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <nav class="footer-nav" aria-label="Footer">
-      <a href="#home">Home</a>
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <p>© 2026 NegusX. All rights reserved.</p>
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <p class="copyright">&copy; 2026 NegusX</p>
+    </div>
   </footer>
 
-  <a href="#home" class="back-to-top" aria-label="Back to top">↑</a>
+  <!-- Back to top -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
 
   <script src="script.js"></script>
 </body>
