@@ -1,157 +1,198 @@
+/* =========================================================
+   NegusX Portfolio — script.js
+   Vanilla JS. No dependencies.
+   ========================================================= */
+(function () {
+  "use strict";
 
-// script.js
-document.addEventListener('DOMContentLoaded', () => {
-  
-  // Mobile nav toggle
-  const navToggle = document.querySelector('.nav-toggle');
-  const navMenu = document.querySelector('.nav-menu');
-  
-  if (navToggle && navMenu) {
-    navToggle.addEventListener('click', () => {
-      const isOpen = navMenu.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', isOpen);
-    });
-    
-    navMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-  }
-  
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        const offset = 70;
-        const top = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
-    });
-  });
-  
-  // Active nav link on scroll
-  const sections = document.querySelectorAll('section[id]');
-  const navItems = document.querySelectorAll('.nav-links a');
-  
-  function highlightNav() {
-    const scrollPos = window.scrollY + 100;
-    sections.forEach(section => {
-      const top = section.offsetTop;
-      const height = section.offsetHeight;
-      const id = section.getAttribute('id');
-      if (scrollPos >= top && scrollPos < top + height) {
-        navItems.forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+  /* ---------- 1. Scroll reveals (Intersection Observer) ---------- */
+  const revealEls = document.querySelectorAll(".reveal");
+
+  if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            observer.unobserve(entry.target); // reveal once, then stop watching
+          }
         });
-      }
-    });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    revealEls.forEach((el) => revealObserver.observe(el));
+  } else {
+    // Fallback: just show everything
+    revealEls.forEach((el) => el.classList.add("revealed"));
   }
-  
-  window.addEventListener('scroll', highlightNav, { passive: true });
-  
-  // Back to top
-  const backToTop = document.querySelector('.back-to-top');
-  if (backToTop) {
-    window.addEventListener('scroll', () => {
-      backToTop.classList.toggle('visible', window.scrollY > 500);
-    }, { passive: true });
+
+  /* ---------- 2. Mobile navigation ---------- */
+  const navToggle = document.getElementById("nav-toggle");
+  const navLinks = document.getElementById("nav-links");
+
+  function openMenu() {
+    navLinks.classList.add("open");
+    navToggle.classList.add("active");
+    navToggle.setAttribute("aria-expanded", "true");
+    navToggle.setAttribute("aria-label", "Close menu");
+    document.body.classList.add("nav-open");
   }
-  
-  // Scroll reveal with Intersection Observer
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  
-  document.querySelectorAll('.reveal, .project, .service-card, .pricing-card, .process-step').forEach(el => {
-    el.classList.add('reveal');
-    revealObserver.observe(el);
+
+  function closeMenu() {
+    navLinks.classList.remove("open");
+    navToggle.classList.remove("active");
+    navToggle.setAttribute("aria-expanded", "false");
+    navToggle.setAttribute("aria-label", "Open menu");
+    document.body.classList.remove("nav-open");
+  }
+
+  function toggleMenu() {
+    if (navLinks.classList.contains("open")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+
+  navToggle.addEventListener("click", toggleMenu);
+
+  // Close menu when a link is tapped
+  navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
   });
-  
-  // Process line animation
-  const processLineFill = document.querySelector('.process-line-fill');
-  if (processLineFill) {
-    const lineObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          processLineFill.classList.add('active');
-          lineObserver.unobserve(entry.target);
-        }
+
+  // Close on Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && navLinks.classList.contains("open")) {
+      closeMenu();
+      navToggle.focus();
+    }
+  });
+
+  // Close if viewport resized to desktop
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768 && navLinks.classList.contains("open")) {
+      closeMenu();
+    }
+  });
+
+  /* ---------- 3. Back-to-top button (appears after 500px) ---------- */
+  const backToTop = document.getElementById("back-to-top");
+
+  function handleBackToTop() {
+    if (window.scrollY > 500) {
+      backToTop.classList.add("visible");
+    } else {
+      backToTop.classList.remove("visible");
+    }
+  }
+
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  /* ---------- 4. Process line — grows/fades on scroll ---------- */
+  const processSteps = document.getElementById("process-steps");
+  const processLineFill = document.getElementById("process-line-fill");
+
+  function updateProcessLine() {
+    if (!processSteps || !processLineFill) return;
+
+    const rect = processSteps.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+
+    // Line starts filling when the section enters the lower 80% of the
+    // viewport and completes as it reaches the upper 30%.
+    const start = viewportHeight * 0.85;
+    const end = viewportHeight * 0.3;
+    const total = rect.height + (start - end);
+
+    let progress = (start - rect.top) / total;
+    progress = Math.min(Math.max(progress, 0), 1);
+
+    processLineFill.style.height = progress * 100 + "%";
+  }
+
+  /* ---------- Shared scroll handler (rAF-throttled) ---------- */
+  let ticking = false;
+
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        handleBackToTop();
+        updateProcessLine();
+        ticking = false;
       });
-    }, { threshold: 0.3 });
-    
-    lineObserver.observe(document.querySelector('.process-wrapper'));
+      ticking = true;
+    }
   }
-  
-  // Contact form
-  const contactForm = document.getElementById('contact-form');
-  const formStatus = document.getElementById('form-status');
-  const submitBtn = document.getElementById('submit-btn');
-  
-  if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      formStatus.className = 'form-status';
-      formStatus.textContent = '';
-      
-      submitBtn.disabled = true;
-      submitBtn.classList.add('loading');
-      
-      const formData = new FormData(contactForm);
-      const data = {
-        name: formData.get('name').trim(),
-        email: formData.get('email').trim(),
-        phone: formData.get('phone').trim(),
-        message: formData.get('message').trim(),
-      };
-      
-      if (!data.name || !data.email || !data.message) {
-        showError('Please fill in all required fields.');
-        return;
-      }
-      
-      try {
-        const response = await fetch('/api/send-email', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        });
-        
-        const result = await response.json();
-        
-        if (response.ok) {
-          showSuccess('Message sent! I\'ll get back to you within 24 hours.');
-          contactForm.reset();
-        } else {
-          showError(result.error || 'Something went wrong. Please try WhatsApp.');
-        }
-      } catch (err) {
-        showError('Email service is down. Please reach out on WhatsApp.');
-      }
-    });
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  onScroll(); // set initial state on load
+
+  /* ---------- 5. Contact form → POST /api/send-email ---------- */
+  const form = document.getElementById("contact-form");
+  const submitBtn = document.getElementById("submit-btn");
+  const formStatus = document.getElementById("form-status");
+
+  function setStatus(message, type) {
+    formStatus.textContent = message;
+    formStatus.className = "form-status " + type;
   }
-  
-  function showSuccess(msg) {
-    formStatus.textContent = msg;
-    formStatus.className = 'form-status success';
-    submitBtn.disabled = false;
-    submitBtn.classList.remove('loading');
+
+  function setLoading(isLoading) {
+    submitBtn.classList.toggle("loading", isLoading);
+    submitBtn.disabled = isLoading;
   }
-  
-  function showError(msg) {
-    formStatus.textContent = msg;
-    formStatus.className = 'form-status error';
-    submitBtn.disabled = false;
-    submitBtn.classList.remove('loading');
+
+  function validateForm(data) {
+    if (!data.name || !data.name.trim()) return "Please enter your name.";
+    if (!data.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))
+      return "Please enter a valid email address.";
+    if (!data.message || !data.message.trim())
+      return "Please tell me a little about your project.";
+    return null;
   }
-  
-});
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    setStatus("", "");
+
+    const data = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      phone: form.phone.value.trim(),
+      message: form.message.value.trim(),
+    };
+
+    const error = validateForm(data);
+    if (error) {
+      setStatus(error, "error");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) throw new Error("Request failed: " + response.status);
+
+      setStatus("Message sent. I'll get back to you within 24 hours.", "success");
+      form.reset();
+    } catch (err) {
+      setStatus(
+        "Something went wrong sending your message. Please try WhatsApp or email instead.",
+        "error"
+      );
+    } finally {
+      setLoading(false);
+    }
+  });
+})();
